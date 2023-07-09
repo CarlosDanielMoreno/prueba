@@ -32,6 +32,7 @@ function fetchPokemons(offset, limit) {
     fetchPokemon(i);
   }
 }
+
 function createPokemon(pokemon) {
   const flipCard = document.createElement("div");
   flipCard.classList.add("flip-card");
@@ -50,16 +51,27 @@ function createPokemon(pokemon) {
   const name = document.createElement("p");
   name.classList.add("name");
   name.textContent = pokemon.name;
+  const button = document.createElement("button")
+  button.textContent = 'capturar pokemon';
   card.appendChild(spriteContainer);
   card.appendChild(number);
   card.appendChild(name);
   const cardBack = document.createElement("div");
   cardBack.classList.add("pokemon-block-back");
   cardBack.appendChild(progressBars(pokemon.stats));
+  cardBack.appendChild(button);
   cardContainer.appendChild(card);
   cardContainer.appendChild(cardBack);
   pokemonContainer.appendChild(flipCard);
+  button.addEventListener('click', function() {
+    Swal.fire(
+      'Good job!',
+      'you caught a pokeke!',
+      'success'
+    )
+  });
 }
+
 
 function progressBars(stats) {
   const statsContainer = document.createElement("div");
